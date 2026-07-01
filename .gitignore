@@ -8,4 +8,5 @@ node_modules/
 /playwright/.auth/
 test.log.txt
 .env
+hata_kayitlari.txt
 
