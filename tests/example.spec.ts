@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test';
 import * as dotenv from 'dotenv';
-import { Values } from './../values';
-
+import { Values } from './values';
 
 
 dotenv.config();
