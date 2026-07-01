@@ -1,46 +1,11 @@
-◇ injected env (2) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (2) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
 
 Running 1 test using 1 worker
 
-◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
 
 [1/1] tests\example.spec.ts:16:5 › Chatbot Control
-  1) tests\example.spec.ts:16:5 › Chatbot Control ──────────────────────────────────────────────────
-
-    Error: Gelen: "Ödeme yapmadan rezervasyon oluşturabilirsiniz. Rezervasyon işlemi sırasında gerekli bilgileri ve belgeleri yükledikten sonra, fiyat teklifi hazırlanır. Size sunulan teklifi onayladıktan sonra ödeme adımına geçersiniz. Yani, rezervasyonunuzu başlatabilir ve teklif alabilirsiniz; ödeme ise teklif onayından sonra yapılır​​." 
-     Beklenen: "ödeme yapmadan rezervasyon oluşturabilirsiniz.as"
-
-    expect(received).toContain(expected) // indexOf
-
-    Expected substring: "ödeme yapmadan rezervasyon oluşturabilirsiniz.as"
-    Received string:    "ödeme yapmadan rezervasyon oluşturabilirsiniz. rezervasyon işlemi sırasında gerekli bilgileri ve belgeleri yükledikten sonra, fiyat teklifi hazırlanır. size sunulan teklifi onayladıktan sonra ödeme adımına geçersiniz. yani, rezervasyonunuzu başlatabilir ve teklif alabilirsiniz; ödeme ise teklif onayından sonra yapılır​​."
-
-      61 |     gelen_metin.toLowerCase(),
-      62 |     `Gelen: "${gelen_metin}" \n Beklenen: "${RULE}"`
-    > 63 |   ).toContain(RULE.toLowerCase());
-         |     ^
-      64 |
-      65 |   //const rule = new RegExp(`(${RULE})`, 'i');
-      66 |   //const eslesme = rule.exec(gelen_metin);
-        at C:\Users\göktuğ\Desktop\arkas\tests\example.spec.ts:63:5
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    test-results\example-Chatbot-Control\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: test-results\example-Chatbot-Control\error-context.md
-
-    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\example-Chatbot-Control\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\example-Chatbot-Control\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-
-  1 failed
-    tests\example.spec.ts:16:5 › Chatbot Control ───────────────────────────────────────────────────
+  1 passed (29.7s)
 
 To open last HTML report run:
 [36m[39m

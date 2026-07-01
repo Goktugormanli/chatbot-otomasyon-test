@@ -1,5 +1,5 @@
 @echo off
-cd /d "C:\Users\bimar.stajyer2\Desktop\chatbot-otomasyon-test"
+cd /d "%~dp0"
 
 echo Test basliyor...
 call npx playwright test > test.log.txt 2>&1
