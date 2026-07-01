@@ -1,3 +1,7 @@
+![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white)
+
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+
 # Chatbot Otomasyon Testi
 
 Bu proje, https://shipeedylojistiktest.arkas.com/yardim üzerinde bulunan chatbot'un işlevselliğini test etmek ve olası hataları otomatik olarak raporlamak için Playwright kullanılarak geliştirilmiştir.
@@ -20,17 +24,13 @@ Bilgisayarınızda Node.js yüklü olduğundan emin olun.
 ## Yapılandırma
 Proje kök dizininde bir `.env` dosyası oluşturun ve aşağıdaki değişkenleri tanımlayın:
 - `TARGET_URL`: Test edilecek web sitesi adresi.
-- `TEST_MESSAGE`: Chatbota gönderilecek örnek metin.
 - `WAIT_TIMEOUT`: Yanıt bekleme süresi (milisaniye).
-- `ERROR_KEYWORDS`: Hata olarak kabul edilecek anahtar kelimeler (regex formatında).
-- `ERROR_MESSAGE`: Ön uyarı mesajı.
 
 ## Çalıştırma
 - **Manuel Çalıştırma:** Proje klasöründeki `test-calistir.bat` dosyasına çift tıklayarak testi manuel olarak başlatabilirsiniz.
-- **Test Sonuçları:** Test tamamlandığında `playwright-report/index.html` dosyası üzerinden detaylı rapora ulaşabilirsiniz.
-
+- **Test Sonuçları:** - Test tamamlandığında `playwright-report/index.html` dosyası üzerinden detaylı görsele sahip rapora ulaşabilirsiniz.
+- Test süreçleri ve hata kayıtları anlık olarak `test.log.txt` dosyasına işlenmektedir; geçmiş kayıtları buradan inceleyebilirsiniz.
 ## Zamanlanmış Görevler
-Windows Görev Zamanlayıcı (Task Scheduler) kullanarak `test-calistir.bat` dosyasını günlük belirli saatlerde otomatik çalışacak şekilde yapılandırabilirsiniz. Test başarısız olursa sistem ekrana bir uyarı mesajı (pop-up) çıkaracaktır.
-
+Windows Görev Zamanlayıcı (Task Scheduler) kullanarak `test-calistir.bat` dosyasını günlük belirli saatlerde otomatik çalışacak şekilde yapılandırabilirsiniz. 
 ---
 Geliştirici: Göktuğ Ormanlı

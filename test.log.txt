@@ -1,25 +1,28 @@
-◇ injected env (6) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (2) from .env // tip: ⌘ suppress logs { quiet: true }
 
 Running 1 test using 1 worker
 
-◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
 
-[1/1] tests\example.spec.ts:14:5 › Chatbot Control
-  1) tests\example.spec.ts:14:5 › Chatbot Control ──────────────────────────────────────────────────
+[1/1] tests\example.spec.ts:16:5 › Chatbot Control
+  1) tests\example.spec.ts:16:5 › Chatbot Control ──────────────────────────────────────────────────
 
-    TimeoutError: locator.waitFor: Timeout 1ms exceeded.
-    Call log:
-      - waiting for locator('.webchat__render-markdown').first() to be visible
+    Error: Gelen: "Ödeme yapmadan rezervasyon oluşturabilirsiniz. Rezervasyon işlemi sırasında gerekli bilgileri ve belgeleri yükledikten sonra, fiyat teklifi hazırlanır. Size sunulan teklifi onayladıktan sonra ödeme adımına geçersiniz. Yani, rezervasyonunuzu başlatabilir ve teklif alabilirsiniz; ödeme ise teklif onayından sonra yapılır​​." 
+     Beklenen: "ödeme yapmadan rezervasyon oluşturabilirsiniz.as"
 
+    expect(received).toContain(expected) // indexOf
 
-      19 |     // Beklenen başlangıç karşılama mesajını görmeyi zorunlu kıl
-      20 |   const initialGreeting = page.locator('.webchat__render-markdown').first();
-    > 21 |   await initialGreeting.waitFor({ state: 'visible', timeout: TIMEOUT });
-         |                         ^
-      22 |   const greetingText = await initialGreeting.innerText();
-      23 |   
-      24 |   expect(
-        at C:\Users\bimar.stajyer2\Desktop\chatbot-otomasyon-test\tests\example.spec.ts:21:25
+    Expected substring: "ödeme yapmadan rezervasyon oluşturabilirsiniz.as"
+    Received string:    "ödeme yapmadan rezervasyon oluşturabilirsiniz. rezervasyon işlemi sırasında gerekli bilgileri ve belgeleri yükledikten sonra, fiyat teklifi hazırlanır. size sunulan teklifi onayladıktan sonra ödeme adımına geçersiniz. yani, rezervasyonunuzu başlatabilir ve teklif alabilirsiniz; ödeme ise teklif onayından sonra yapılır​​."
+
+      61 |     gelen_metin.toLowerCase(),
+      62 |     `Gelen: "${gelen_metin}" \n Beklenen: "${RULE}"`
+    > 63 |   ).toContain(RULE.toLowerCase());
+         |     ^
+      64 |
+      65 |   //const rule = new RegExp(`(${RULE})`, 'i');
+      66 |   //const eslesme = rule.exec(gelen_metin);
+        at C:\Users\göktuğ\Desktop\arkas\tests\example.spec.ts:63:5
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     test-results\example-Chatbot-Control\test-failed-1.png
@@ -37,7 +40,7 @@ Running 1 test using 1 worker
 
 
   1 failed
-    tests\example.spec.ts:14:5 › Chatbot Control ───────────────────────────────────────────────────
+    tests\example.spec.ts:16:5 › Chatbot Control ───────────────────────────────────────────────────
 
 To open last HTML report run:
 [36m[39m
