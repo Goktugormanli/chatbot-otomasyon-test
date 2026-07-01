@@ -1,0 +1,45 @@
+◇ injected env (6) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+
+Running 1 test using 1 worker
+
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+
+[1/1] tests\example.spec.ts:14:5 › Chatbot Control
+  1) tests\example.spec.ts:14:5 › Chatbot Control ──────────────────────────────────────────────────
+
+    TimeoutError: locator.waitFor: Timeout 1ms exceeded.
+    Call log:
+      - waiting for locator('.webchat__render-markdown').first() to be visible
+
+
+      19 |     // Beklenen başlangıç karşılama mesajını görmeyi zorunlu kıl
+      20 |   const initialGreeting = page.locator('.webchat__render-markdown').first();
+    > 21 |   await initialGreeting.waitFor({ state: 'visible', timeout: TIMEOUT });
+         |                         ^
+      22 |   const greetingText = await initialGreeting.innerText();
+      23 |   
+      24 |   expect(
+        at C:\Users\bimar.stajyer2\Desktop\chatbot-otomasyon-test\tests\example.spec.ts:21:25
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\example-Chatbot-Control\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\example-Chatbot-Control\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\example-Chatbot-Control\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\example-Chatbot-Control\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  1 failed
+    tests\example.spec.ts:14:5 › Chatbot Control ───────────────────────────────────────────────────
+
+To open last HTML report run:
+[36m[39m
+[36m  npx playwright show-report[39m
+[36m[39m
