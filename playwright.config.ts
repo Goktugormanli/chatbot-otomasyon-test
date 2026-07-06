@@ -6,6 +6,7 @@ export default defineConfig({
   reporter: [['html', { open: 'never', outputFolder: 'playwright-report' }]],
 
   use: {
+    channel: 'chrome',
     /* Hata olursa, hatanın nerede olduğunu inceleyebilmek için detaylı log tutar */
     trace: 'retain-on-failure',
     /* Sadece hata olduğunda ekran görüntüsü alır */

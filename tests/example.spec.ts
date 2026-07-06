@@ -6,10 +6,10 @@ import { Values } from './values';
 dotenv.config();
 
 const MESSAGE = Values.TEST_MESSAGE || "keçi";
-const URL = process.env.TARGET_URL || 'https://shipeedylojistiktest.arkas.com/yardim';
+const URL = process.env.TARGET_URL || "URL";
 const TIMEOUT = Number(process.env.WAIT_TIMEOUT) || 15000;
 const RULE = Values.CHECK_KEYWORDS || 'evet';
-const GREETING = Values.GREETING || 'Merhaba. Ben Optichain';
+const GREETING = Values.GREETING || 'Merhaba';
 
 
 test('Chatbot Control', async ({ page }) => {
@@ -24,7 +24,7 @@ test('Chatbot Control', async ({ page }) => {
 
   expect(
     greetingText.toLowerCase(),
-    `Başlangıç mesajı bulunamadı. Gelen: "${greetingText}"`
+    `Başlangıç mesajı eşleşmedi. Beklenen: "${GREETING}" | Gelen: "${greetingText}"`
   ).toContain(GREETING.toLowerCase());
 
   await page.getByPlaceholder('İletinizi yazın').fill(MESSAGE);
@@ -41,7 +41,7 @@ test('Chatbot Control', async ({ page }) => {
 
   expect(
     gelen_metin.toLowerCase(),
-    `Gelen: "${gelen_metin}" \n Beklenen: "${RULE}"`
+    `Bot cevabı bekleneni karşılamadı. Beklenen içerik: "${RULE}" | Gelen içerik: "${gelen_metin}"`
   ).toContain(RULE.toLowerCase());
 
 });
