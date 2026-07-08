@@ -1,216 +1,147 @@
 ![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
-![Gmail](https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 
-# Chatbot Otomasyon Testi
+# ARKAS Chatbot Otomasyon Testleri
 
-Bu proje, https://shipeedylojistiktest.arkas.com/yardim adresinde bulunan chatbot'un işlevselliğini test etmek ve olası hataları otomatik olarak raporlamak için **Playwright** kullanılarak geliştirilmiştir. Test başarısız olduğunda, detaylı hata raporları otomatik olarak **Email** ile gönderilebilir.
+Bu proje, ARKAS'ın yardım chatbot'u üzerinde Playwright ve TypeScript kullanarak otomatik test senaryoları çalıştırmayı amaçlar. Projede üç ana test grubu bulunur:
 
-## 🎯 Özellikler
+- Happy Path senaryoları
+- Bağlam dışı sorular için graceful fallback davranışı
+- Güvenlik filtresi uyarıları
 
-- ✅ **Otomatik Chatbot Testleri** - Playwright ile web test otomasyonu
-- ✅ **Otomatik Email Bildirimi** - Test başarısız olduğunda otomatik email gönderimi
-- ✅ **PDF Rapor Oluşturma** - Test sonuçlarının profesyonel PDF raporunda sunumu
-- ✅ **Screenshot'lar** - Hata anında alınan ekran görüntüleri
-- ✅ **Detaylı Hata Mesajları** - Test hatalarının tam açıklaması
-- ✅ **Log Dosyaları** - Tüm test işlemlerinin kaydı
+Ayrıca test başarısız olduğunda e-posta bildirimi ve PDF rapor üretimi de desteklenmektedir.
 
-## 📋 İçindekiler
+## Özellikler
 
-- [Kurulum](#kurulum)
-- [Yapılandırma](#yapılandırma)
-- [Çalıştırma](#çalıştırma)
-- [Email Bildirimi](#email-bildirimi)
-- [Zamanlanmış Görevler](#zamanlanmış-görevler)
-- [Dosya Yapısı](#dosya-yapısı)
+- ✅ Playwright ile web otomasyonu
+- ✅ Page Object Model yapısı
+- ✅ Test verilerinin ayrı tutulması
+- ✅ Hata anında ekran görüntüsü yakalama
+- ✅ Başarısız testler için e-posta bildirimi
+- ✅ HTML/PDF rapor üretimi desteği
 
-## 🚀 Kurulum
+## Kurulum
 
-### Ön Gereksinimler
-- Node.js (v14 veya üzeri)
-- npm paket yöneticisi
+### Ön koşullar
 
-### Kurulum Adımları
+- Node.js 18 veya üzeri
+- npm
+- Google Chrome / Chromium
 
-1. **Projeyi Klonlayın:**
-   ```bash
-   git clone https://github.com/Goktugormanli/chatbot-otomasyon-test.git
-   cd chatbot-otomasyon-test
-   ```
+### Adımlar
 
-2. **Gerekli Paketleri Yükleyin:**
-   ```bash
-   npm install
-   ```
+1. Bağımlılıkları yükleyin:
 
-3. **Playwright Tarayıcılarını Yükleyin:**
-   ```bash
-   npx playwright install
-   ```
+```bash
+npm install
+```
 
-## ⚙️ Yapılandırma
+2. Playwright tarayıcılarını kurun:
 
-### .env Dosyası Oluşturma
+```bash
+npx playwright install
+```
 
-Proje kök dizininde `.env` dosyası oluşturun ve aşağıdaki değişkenleri tanımlayın:
+3. Proje kök dizininde `.env` dosyası oluşturun:
 
 ```env
-# Test Yapılandırması
 TARGET_URL=https://shipeedylojistiktest.arkas.com/yardim
-WAIT_TIMEOUT=15000
-
-# Email Yapılandırması (Gmail)
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
 MAIL_USER=your-email@gmail.com
 MAIL_PASS=your-app-password
 MAIL_TO=recipient@example.com
-
-# Rapor Yapılandırması
-REPORT_PATH=file:///c:/Users/username/Desktop/chatbot-otomasyon-test/playwright-report/index.html
 ```
 
-### Gmail App Password Oluşturma
+> Gmail kullanıyorsanız uygulama şifresi kullanmanız gerekir.
 
-1. Google Hesabınıza Giriş Yapın: https://myaccount.google.com
-2. **Güvenlik** bölümüne gelin
-3. **2 Adımlı Doğrulamayı** etkinleştirin (eğer etkin değilse)
-4. **Uygulama Şifrelerine** gelin
-5. Uygulama olarak **Mail**, Cihaz olarak **Windows Bilgisayar** seçin
-6. Oluşturulan 16 karakterli şifreyi `.env` dosyasında `MAIL_PASS` olarak girin
+## Testleri Çalıştırma
 
-## 🏃 Çalıştırma
+### Tüm testleri çalıştırma
 
-### Manuel Test Çalıştırması
+```bash
+npx playwright test
+```
 
-Proje klasöründeki `test-calistir.bat` dosyasına **çift tıklayarak** testi başlatabilirsiniz.
+### UI modunda çalıştırma
+
+```bash
+npx playwright test --ui
+```
+
+### Headed modda çalıştırma
+
+```bash
+npx playwright test --headed
+```
+
+### Raporu görüntüleme
+
+```bash
+npx playwright show-report
+```
+
+### Windows batch dosyası ile çalıştırma
 
 ```cmd
 test-calistir.bat
 ```
 
-### Test Komut Satırından Çalıştırma
+Bu betik testleri çalıştırır, başarısız olursa hata loglarını yazar ve e-posta gönderir.
+
+## Proje Yapısı
+
+```text
+arkas/
+├── tests/
+│   ├── 01_happy_path.spec.ts
+│   ├── 02_out_of_domain.spec.ts
+│   ├── 03_safety_exceptions.spec.ts
+│   ├── data/
+│   │   └── testData.json
+│   └── utils/
+│       ├── chatbot.page.ts
+│       └── testData.ts
+├── playwright.config.ts
+├── tsconfig.json
+├── tests/tsconfig.json
+├── mail-gonder.js
+├── test-calistir.bat
+├── package.json
+├── .env
+├── playwright-report/
+├── test-results/
+└── README.md
+```
+
+## Test Senaryoları
+
+- Happy Path: Beklenen sorulara doğru cevap verme davranışını test eder.
+- Graceful Fallback: Anlamsız veya alakasız sorularda kibar bir reddetme davranışını doğrular.
+- Hard Exception: Tehlikeli veya güvenlik kuralını ihlal eden isteklerde güvenlik filtresi uyarısını doğrular.
+
+## E-posta Bildirimi
+
+Test başarısız olduğunda [mail-gonder.js](mail-gonder.js) çalışır. Bu betik:
+
+- hata ayrıntılarını toplar
+- ekran görüntüsü ve rapor bilgilerini hazırlar
+- PDF rapor oluşturur
+- belirtilen adrese e-posta gönderir
+
+## Sorun Giderme
+
+- Node.js ve npm sürümünü kontrol edin: `node -v`, `npm -v`
+- Playwright tarayıcılarının kurulu olduğundan emin olun: `npx playwright install`
+- `.env` dosyasının proje kök dizininde bulunduğunu doğrulayın
+- `TARGET_URL` adresinin erişilebilir olduğunu kontrol edin
+- TypeScript hatası alırsanız şu komutu çalıştırın:
 
 ```bash
-# Tüm testleri çalıştır
-npx playwright test
-
-# Belirli bir test dosyasını çalıştır
-npx playwright test tests/example.spec.ts
-
-# Başlı başına modda çalıştır (tarayıcı görünür)
-npx playwright test --headed
-
-# Raporu açın
-npx playwright show-report
+npx tsc --noEmit --project tsconfig.json
 ```
 
-## 📧 Email Bildirimi
+## Geliştirici
 
-Test başarısız olduğunda otomatik olarak email gönderilir. Email şunları içerir:
-
-- 🚨 **Hata Bildirimi** - Testin başarısız olduğunu belirten başlık
-- 📝 **Hata Detayları** - Testin neden başarısız olduğunun tam açıklaması
-- 🖼️ **Screenshot** - Hata anında alınan ekran görüntüsü
-- 🔗 **Test URL** - Test edilmekte olan web sitesi adresi
-- 📄 **PDF Rapor** - Detaylı test raporunun PDF dosyası
-
-### PDF Rapor İçeriği
-
-Gönderilen PDF dosyası aşağıdakileri içerir:
-
-- Test adı ve konumu
-- Hata mesajı
-- Beklenen vs. alınan sonuçlar
-- Test sırasında alınan screenshot'lar
-- Tam hata stacktrace'i
-
-## 📁 Dosya Yapısı
-
-```
-chatbot-otomasyon-test/
-├── tests/
-│   ├── example.spec.ts       # Test senaryoları
-│   └── values.ts              # Test değerleri ve sabitler
-├── playwright-report/         # Playwright raporları (otomatik oluşturulur)
-├── test-results/              # Test sonuçları (otomatik oluşturulur)
-├── mail-gonder.js             # Email gönderme scripti
-├── test-calistir.bat          # Windows batch dosyası (manuel çalıştırma için)
-├── playwright.config.ts       # Playwright yapılandırması
-├── package.json               # NPM paket bağımlılıkları
-├── .env                       # Ortam değişkenleri (gizli)
-├── test.log.txt               # Test log dosyası
-├── hata_kayitlari.txt         # Hata kayıtları
-└── README.md                  # Bu dosya
-```
-
-## 🔄 Zamanlanmış Görevler
-
-Windows Görev Zamanlayıcısı (Task Scheduler) kullanarak testleri belirli saatlerde otomatik çalıştırabilirsiniz:
-
-1. **Windows Görev Zamanlayıcısını Açın:**
-   - `Win + R` tuşlarına basıp `taskschd.msc` yazın
-
-2. **Yeni Görev Oluşturun:**
-   - Sağ panelde "Görev Oluştur..." seçeneğini tıklayın
-
-3. **Genel Sekmesinde:**
-   - **Ad:** `Chatbot Otomasyon Testi`
-   - **Açıklama:** `Günlük chatbot testini çalıştırır`
-
-4. **Tetikleyici (Triggers) Sekmesinde:**
-   - "Yeni" butonu tıklayın
-   - Zamanlamayı ayarlayın (örn: Her gün 09:00'da)
-
-5. **İşlemler (Actions) Sekmesinde:**
-   - **Program/Script:** `C:\Users\[YourUsername]\Desktop\chatbot-otomasyon-test\test-calistir.bat`
-   - **Başlangıç Dizini:** `C:\Users\[YourUsername]\Desktop\chatbot-otomasyon-test`
-
-6. **Koşullar Sekmesinde:**
-   - "Görev için elektrik tasarrufu seçeneklerini kullan" seçeneğini **kaldırın**
-
-7. **Kaydedin ve Test Edin:**
-   - `Sağ tıkla → Çalıştır` ile test edin
-
-## 🛠️ Sorun Giderme
-
-### Email Gönderilmiyor
-
-- ✅ `.env` dosyasında email yapılandırmasını kontrol edin
-- ✅ Gmail hesabında 2 Adımlı Doğrulama etkinleştirilmiş mi kontrol edin
-- ✅ App Password (uygulama şifresi) doğru mu kontrol edin
-- ✅ `test.log.txt` dosyasında email hata mesajlarını kontrol edin
-
-### Test Çalışmıyor
-
-- ✅ Node.js ve npm sürümlerini kontrol edin: `node -v`, `npm -v`
-- ✅ Gerekli paketlerin yüklendiğini kontrol edin: `npm list`
-- ✅ `.env` dosyasının proje kök dizininde olduğunu kontrol edin
-- ✅ TARGET_URL'nin erişilebilir olduğunu kontrol edin
-
-### PDF Rapor Boş Geliyorsa
-
-- ✅ Playwright raporunun oluştuğunu kontrol edin: `playwright-report/` klasörü
-- ✅ Test sonuçlarının kaydedildiğini kontrol edin: `test-results/` klasörü
-- ✅ `test.log.txt` dosyasında hata mesajlarını kontrol edin
-
-## 📝 Log Dosyaları
-
-Proje tarafından oluşturulan log dosyaları:
-
-- **test.log.txt** - Test çalıştırması sırasında çıktı ve hata mesajları
-- **hata_kayitlari.txt** - Test başarısızlıklarının tarihi kaydı
-
-## 🔐 Güvenlik Notları
-
-- **`.env` dosyasını asla GitHub'a yüklemez** - `.gitignore` dosyasını kontrol edin
-- Email şifresi yerine **App Password** (Uygulama Şifresi) kullanın
-- Duyarlı verileri `.env` dosyasında saklayın
-
-## 👤 Geliştirici
-
-**Göktuğ Ormanlı** - Chatbot Otomasyon Testi
-
----
-
-**Son Güncelleme:** 2 Temmuz 2026
+Göktuğ Ormanlı
