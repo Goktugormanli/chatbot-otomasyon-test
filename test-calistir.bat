@@ -1,30 +1,35 @@
-
 @echo off
+:: 1. Calisma dizinini bat dosyasinin oldugu klasore (Root) sabitle
 cd /d "%~dp0"
 
-echo Test basliyor...
+:: 2. Sistemin calistigini ana kayit defterine (Tarih/Saat ile) not et
+echo %date% %time% - [BILGI] Otomasyon tetiklendi, testler basliyor... >> otomasyon_kayitlari.txt
+
+:: 3. Eski detayli metin logunu sil (Sadece son turun terminal ciktisi kalsin)
+if exist test.log.txt del test.log.txt
+
+:: 4. Playwright'i sessizce calistir ve butun ciktilari (hatalar dahil) test.log.txt icine yonlendir
 call npx playwright test > test.log.txt 2>&1
 set "test_result=%errorlevel%"
 
+:: 5. Testin basari durumunu (Exit Code) kontrol et
 if "%test_result%" neq "0" (
-    echo [HATA] Test basarisiz oldu! Detaylar test.log.txt dosyasinda.
-    echo %date% %time% - Test Failed >> hata_kayitlari.txt
-
-    echo [BILGI] E-posta gonderiliyor...
-    call node mail-gonder.js >> test.log.txt 2>&1
-    if errorlevel 1 (
-        echo [HATA] E-posta gonderilemedi.
-        echo %date% %time% - Email Failed >> hata_kayitlari.txt
-    ) else (
-        echo [BASARILI] E-posta gonderildi.
-        echo %date% %time% - Email Sent >> hata_kayitlari.txt
-    )
+    :: --- HATA SENARYOSU ---
+    echo %date% %time% - [HATA] Test patladi! Hata ani 'test-results' icine ZIP olarak kaydedildi. >> otomasyon_kayitlari.txt
+    echo %date% %time% - [BILGI] E-posta bildirim sureci baslatiliyor... >> otomasyon_kayitlari.txt
     
-   
-    msg * "Dikkat: Chatbot testi basarisiz oldu! E-posta iletildi."
+    :: E-posta scriptini calistir ve onun loglarini da ayni txt dosyasina ekle
+    call node mail-gonder.js >> test.log.txt 2>&1
+    
+    if errorlevel 1 (
+        echo %date% %time% - [KRITIK] E-posta GONDERILEMEDI! >> otomasyon_kayitlari.txt
+    ) else (
+        echo %date% %time% - [BASARILI] Hata bildirimi e-posta ile iletildi. >> otomasyon_kayitlari.txt
+    )
 ) else (
-    echo [BASARILI] Test sorunsuz tamamlandi.
+    :: --- BASARI SENARYOSU ---
+    echo %date% %time% - [BASARILI] Test sorunsuz tamamlandi. >> otomasyon_kayitlari.txt
 )
 
-
-pause
+:: 6. Task Scheduler'in askida kalmamasi (zombie olmamasi) icin sessizce cikis yap
+exit

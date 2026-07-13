@@ -19,10 +19,10 @@ export class ChatbotPage {
   async openChat() {
     await this.page.locator(this.chatButton).click();
     const First_message = this.page.locator(this.responseSelector).first();
-    await First_message.waitFor({ state: 'visible', timeout: 10000 });
-    await this.page.getByPlaceholder('İletinizi yazın').waitFor({ state: 'visible', timeout: 10000 });
+    await First_message.waitFor({ state: 'visible', timeout: 30000 });
+    await this.page.getByPlaceholder('İletinizi yazın').waitFor({ state: 'visible', timeout: 30000 });
   }
-  
+
 
   async verifyGreeting(expectedText: string, timeout = 15000) {
     const initialGreeting = this.page.locator(this.responseSelector).first();

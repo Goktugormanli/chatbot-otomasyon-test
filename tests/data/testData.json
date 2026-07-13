@@ -4,14 +4,20 @@
       "name": "Chatbot valid reservation question",
       "greeting": "Merhaba",
       "message": "Ödeme yapmadan rezervasyon oluşturabilir miyim?",
-      "expectedContains": "ödeme yapmadan rezervasyon oluşturabilirsiniz."
+      "expectedContains": "ödeme yapmadan rezervasyon oluşturabilirsiniz.ka"
+    },
+    {
+      "name": "Chatbot valid document requirement question",
+      "greeting": "Merhaba",
+      "message": "Rezervasyon oluşturmak için hangi belgeleri hazırlamalıyım?",
+      "expectedContains": "belgelerin"
     }
   ],
   "outOfDomain": [
     {
       "name": "Out of domain weather question",
-     "greeting": "Merhaba",
-      "message": "İzmir'de bugün hava kaç derece?",
+      "greeting": "Merhaba",
+      "message": "Baf",
       "expectedContains": "Bu soruya şu anda cevap veremiyorum"
     }
   ],
