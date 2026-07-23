@@ -1,4 +1,8 @@
 Senaryo Adı;Karşılama Mesajı;Kullanıcı Mesajı;Beklenen Cevap İçeriği;Dil
+hint;अपना मैसेज लिखें; Neye ihtiyaç var; ne diyon;in
+
+
+Reservation documents - happy path;Hello;What documents do I need to prepare for a reservation?;commercial invoice;en
 Ödeme yapmadan rezervasyon oluşturma;Merhaba;Ödeme yapmadan rezervasyon oluşturabilir miyim?;goktu;tr
 Rezervasyon belgeleri - çok turlu diyalog örneği;Merhaba;Rezervasyon oluşturmak için hangi belgeleri hazırlamalıyım?;rezervasyon;tr
 Rezervasyon belgeleri - çok turlu diyalog örneği;;Peki bu belgeleri nereye yüklemem gerekiyor?;goktug;tr

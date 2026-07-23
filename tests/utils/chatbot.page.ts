@@ -1,6 +1,6 @@
 import { Page, expect } from '@playwright/test';
 
-export type ChatLocale = 'tr' | 'en';
+export type ChatLocale = 'tr' | 'en' | 'in';
 
 interface LocaleConfig {
   messagePlaceholder: string;
@@ -20,6 +20,11 @@ const LOCALES: Record<ChatLocale, LocaleConfig> = {
     languageButtonSelector: '.MuiSelect-root',
     languageOptionName: 'EN',
   },
+  in: {
+    messagePlaceholder: 'अपना मैसेज लिखें ', // TODO: dil degistikten sonra input placeholder'i gercekten degisiyor mu, kontrol et
+    languageButtonSelector: '.MuiSelect-root',
+    languageOptionName: 'IN',
+  }
 };
 
 export class ChatbotPage {

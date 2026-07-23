@@ -1,6 +1,32 @@
 {
   "scenarios": [
     {
+      "name": "hint",
+      "turns": [
+        {
+          "message": "Neye ihtiyaç var",
+          "expectedContains": "ne diyon"
+        }
+      ],
+      "language": "in",
+      "greeting": "अपना मैसेज लिखें"
+    },
+    {
+      "name": "Reservation documents - happy path",
+      "turns": [
+        {
+          "message": "What documents do I need to prepare for a reservation?",
+          "expectedContains": "commercial invoice"
+        },
+        {
+          "message": "What documents do I need to prepare for a reservation?",
+          "expectedContains": "commercial invoice"
+        }
+      ],
+      "language": "en",
+      "greeting": "Hello"
+    },
+    {
       "name": "Ödeme yapmadan rezervasyon oluşturma",
       "turns": [
         {
@@ -58,17 +84,6 @@
       ],
       "language": "tr",
       "greeting": "Merhaba"
-    },
-    {
-      "name": "Reservation documents - happy path",
-      "turns": [
-        {
-          "message": "What documents do I need to prepare for a reservation?",
-          "expectedContains": "commercial invoice"
-        }
-      ],
-      "language": "en",
-      "greeting": "Hello"
     }
   ]
 }

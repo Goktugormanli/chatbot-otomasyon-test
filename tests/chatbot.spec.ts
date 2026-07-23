@@ -1,19 +1,21 @@
 import { test } from '@playwright/test';
 import { ChatbotPage } from './utils/chatbot.page';
-import { getScenariosForLocale } from './utils/scenarios';
+import { testData } from './utils/testData';
 
 /**
  * Bu dosyaya yeni bir senaryo eklemek İÇİN KOD DEĞİŞTİRMEK GEREKMEZ.
  * Tüm senaryolar tests/data/testData.json içinden okunur (Dil sütunu
- * boş veya "tr" olan satırlar burada çalışır).
+ * boş veya "tr" olan satırlar "tr", "en" olanlar "en" olarak isimlendirilir).
  * Yeni senaryo eklemek/düzenlemek için bkz. SENARYO-YAZMA-REHBERI.md
+ *
+ * Sadece tek bir dili çalıştırmak istersen (dosya bölmeye gerek yok):
+ *   npx playwright test --grep "@tr"
+ *   npx playwright test --grep "@en"
  */
-const scenarios = getScenariosForLocale('tr');
-
-test.describe('Chatbot Senaryoları (TR)', () => {
-  for (const scenario of scenarios) {
-    test(scenario.name, async ({ page }) => {
-      const chatbot = new ChatbotPage(page, 'tr');
+test.describe('Chatbot Senaryoları', () => {
+  for (const scenario of testData.scenarios) {
+    test(`${scenario.name} @${scenario.language}`, async ({ page }) => {
+      const chatbot = new ChatbotPage(page, scenario.language);
 
       await test.step('Sayfayı aç, dili ayarla ve sohbet penceresini başlat', async () => {
         await chatbot.goto();
