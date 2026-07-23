@@ -1,13 +1,107 @@
-◇ injected env (2) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+[BAŞARILI] 6 senaryo okundu, testData.json güncellendi.
 
-Running 1 test using 1 worker
+Running 7 tests using 3 workers
 
-◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+[1/7] tests\chatbot.en.spec.ts:15:9 › Chatbot Senaryoları (EN) › Reservation documents - happy path
+[2/7] tests\sanity-check.spec.ts:4:7 › Sanity Check › 1 + 1 = 2
+[3/7] tests\chatbot.spec.ts:15:9 › Chatbot Senaryoları (TR) › Ödeme yapmadan rezervasyon oluşturma
+  1) tests\chatbot.spec.ts:15:9 › Chatbot Senaryoları (TR) › Ödeme yapmadan rezervasyon oluşturma › Tur 1: "Ödeme yapmadan rezervasyon oluşturabilir miyim?" 
 
-[1/1] tests\example.spec.ts:16:5 › Chatbot Control
-  1 passed (29.7s)
+    Error: Bot cevabı beklenen metni içermiyor: goktu
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "goktu"
+    Received string:    "ödeme yapmadan rezervasyon oluşturabilirsiniz. onay verilene kadar herhangi bir masraf oluşmaz​​."
+
+       at utils\chatbot.page.ts:101
+
+       99 |   async expectBotResponseContains(expectedText: string, index = -1, timeout = 15000) {
+      100 |     const actual = (await this.getBotResponseText(index, timeout)).toLowerCase();
+    > 101 |     expect(actual, `Bot cevabı beklenen metni içermiyor: ${expectedText}`).toContain(expectedText.toLowerCase());
+          |                                                                            ^
+      102 |     return actual;
+      103 |   }
+      104 | }
+        at ChatbotPage.expectBotResponseContains (C:\Users\bimar.stajyer2\Desktop\Chat_bot\chatbot-otomasyon-test\tests\utils\chatbot.page.ts:101:76)
+        at C:\Users\bimar.stajyer2\Desktop\Chat_bot\chatbot-otomasyon-test\tests\chatbot.spec.ts:33:11
+        at C:\Users\bimar.stajyer2\Desktop\Chat_bot\chatbot-otomasyon-test\tests\chatbot.spec.ts:31:9
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\chatbot-Chatbot-Senaryolar-e1be0-madan-rezervasyon-oluşturma\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\chatbot-Chatbot-Senaryolar-e1be0-madan-rezervasyon-oluşturma\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\chatbot-Chatbot-Senaryolar-e1be0-madan-rezervasyon-oluşturma\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\chatbot-Chatbot-Senaryolar-e1be0-madan-rezervasyon-oluşturma\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[4/7] tests\chatbot.spec.ts:15:9 › Chatbot Senaryoları (TR) › Rezervasyon belgeleri - çok turlu diyalog örneği
+  2) tests\chatbot.spec.ts:15:9 › Chatbot Senaryoları (TR) › Rezervasyon belgeleri - çok turlu diyalog örneği › Tur 2: "Peki bu belgeleri nereye yüklemem gerekiyor?" 
+
+    Error: Bot cevabı beklenen metni içermiyor: goktug
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "goktug"
+    Received string:    "belgeleri yüklemeniz gereken yer, rezervasyon sürecinde sistemde “belge bekleniyor” statüsüne geçtiğinizde açılan yükleme ekranıdır. bu ekranda pdf veya doc formatındaki belgelerinizi sisteme yükleyebilirsiniz. belgeler tamamlandığında statünüz otomatik olarak “teklif hazırlanıyor” olarak güncellenir​​."
+
+       at utils\chatbot.page.ts:101
+
+       99 |   async expectBotResponseContains(expectedText: string, index = -1, timeout = 15000) {
+      100 |     const actual = (await this.getBotResponseText(index, timeout)).toLowerCase();
+    > 101 |     expect(actual, `Bot cevabı beklenen metni içermiyor: ${expectedText}`).toContain(expectedText.toLowerCase());
+          |                                                                            ^
+      102 |     return actual;
+      103 |   }
+      104 | }
+        at ChatbotPage.expectBotResponseContains (C:\Users\bimar.stajyer2\Desktop\Chat_bot\chatbot-otomasyon-test\tests\utils\chatbot.page.ts:101:76)
+        at C:\Users\bimar.stajyer2\Desktop\Chat_bot\chatbot-otomasyon-test\tests\chatbot.spec.ts:33:11
+        at C:\Users\bimar.stajyer2\Desktop\Chat_bot\chatbot-otomasyon-test\tests\chatbot.spec.ts:31:9
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\chatbot-Chatbot-Senaryolar-c4f20----çok-turlu-diyalog-örneği\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\chatbot-Chatbot-Senaryolar-c4f20----çok-turlu-diyalog-örneği\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\chatbot-Chatbot-Senaryolar-c4f20----çok-turlu-diyalog-örneği\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\chatbot-Chatbot-Senaryolar-c4f20----çok-turlu-diyalog-örneği\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[5/7] tests\chatbot.spec.ts:15:9 › Chatbot Senaryoları (TR) › BAF nedir - happy path
+[6/7] tests\chatbot.spec.ts:15:9 › Chatbot Senaryoları (TR) › Bağlam dışı soru
+[7/7] tests\chatbot.spec.ts:15:9 › Chatbot Senaryoları (TR) › Güvenlik filtresi kontrolü
+  2 failed
+    tests\chatbot.spec.ts:15:9 › Chatbot Senaryoları (TR) › Ödeme yapmadan rezervasyon oluşturma ───
+    tests\chatbot.spec.ts:15:9 › Chatbot Senaryoları (TR) › Rezervasyon belgeleri - çok turlu diyalog örneği 
+  5 passed (1.8m)
 
 To open last HTML report run:
 [36m[39m
 [36m  npx playwright show-report[39m
 [36m[39m
+◇ injected env (7) from .env // tip: ⌘ suppress logs { quiet: true }
+[DEBUG] Mail Host: smtp.gmail.com
+[DEBUG] Mail Port: 587
+[DEBUG] Mail User: goktugormanli88@gmail.com
+[DEBUG] Mail To: goktugormanli3@gmail.com
+[DEBUG] Test sonuclari okunuyor...
+[DEBUG] 2 basarisiz test bulundu
+[DEBUG] HTML rapor yazildi, Puppeteer baslatiliyor...
+[DEBUG] HTML dosya yukleniyor...
+[DEBUG] PDF'e cevriliyor...
+[DEBUG] PDF olusturuldu: C:\Users\bimar.stajyer2\Desktop\Chat_bot\chatbot-otomasyon-test\test-report.pdf
+Mail gonderildi: <b2463ce5-0e01-f593-f11d-636434200276@gmail.com>
+[DEBUG] PDF dosyasi silindi

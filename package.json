@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "convert:csv": "node scripts/csv-to-json.js",
+    "test": "node scripts/csv-to-json.js && npx playwright test"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

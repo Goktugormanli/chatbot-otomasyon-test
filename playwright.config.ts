@@ -3,8 +3,12 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
   testIgnore: ['**/legacy/**'],
-  /* Testler bittiğinde HTML formatında görsel bir rapor sunar */
-  reporter: [['html', { open: 'never', outputFolder: 'playwright-report' }]],
+  
+  /* Testler bittiğinde hem HTML hem de JSON formatında rapor sunar */
+  reporter: [
+    ['html', { open: 'never', outputFolder: 'playwright-report' }],
+    ['json', { outputFile: 'test-results/results.json' }]
+  ],
 
   use: {
     baseURL: process.env.TARGET_URL || 'https://shipeedylojistiktest.arkas.com/yardim',

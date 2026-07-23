@@ -1,31 +1,31 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import type { ChatLocale } from './chatbot.page';
 
-export interface HappyPathScenario {
-  name: string;
-  greeting: string;
+/**
+ * Tek bir sohbet turu: kullanıcının gönderdiği mesaj ve botun
+ * cevabında bulunması beklenen metin.
+ */
+export interface ChatTurn {
   message: string;
   expectedContains: string;
 }
 
-export interface OutOfDomainScenario {
+/**
+ * Bir test senaryosu. `turns` dizisi 1 veya daha fazla eleman
+ * içerebilir; birden fazla eleman uzun/çok turlu bir diyaloğu test eder.
+ */
+export interface ChatScenario {
   name: string;
-  greeting: string;
-  message: string;
-  expectedContains: string;
-}
-
-export interface SafetyExceptionScenario {
-  name: string;
-  greeting: string;
-  message: string;
-  expectedContains: string;
+  /** Opsiyonel: sohbet açıldığında botun ilk karşılama mesajı kontrol edilsin mi? */
+  greeting?: string;
+  turns: ChatTurn[];
+  /** CSV'deki "Dil" sütunundan gelir. Boşsa csv-to-json.js 'tr' atar. */
+  language: ChatLocale;
 }
 
 export interface TestData {
-  happyPath: HappyPathScenario[];
-  outOfDomain: OutOfDomainScenario[];
-  safetyExceptions: SafetyExceptionScenario[];
+  scenarios: ChatScenario[];
 }
 
 const dataPath = path.resolve(__dirname, '../data/testData.json');
